@@ -11,7 +11,10 @@ function initLocale() {
     typeof Localization === "undefined"
       ? ztoolkit.getGlobal("Localization")
       : Localization
-  )([`${config.addonRef}-addon.ftl`], true);
+  )(
+    [`${config.addonRef}-addon.ftl`, `${config.addonRef}-preferences.ftl`],
+    true,
+  );
   addon.data.locale = {
     current: l10n,
   };
@@ -44,7 +47,7 @@ function getString(localString: FluentMessageId): string;
 function getString(localString: FluentMessageId, branch: string): string;
 function getString(
   localeString: FluentMessageId,
-  options: { branch?: string | undefined; args?: Record<string, unknown> },
+  options: { branch?: string | undefined; args?: L10nArgs },
 ): string;
 function getString(...inputs: any[]) {
   if (inputs.length === 1) {
@@ -70,7 +73,7 @@ interface Pattern {
 
 function _getString(
   localeString: FluentMessageId,
-  options: { branch?: string | undefined; args?: Record<string, unknown> } = {},
+  options: { branch?: string | undefined; args?: L10nArgs } = {},
 ): string {
   const localStringWithPrefix = `${config.addonRef}-${localeString}`;
   const { branch, args } = options;

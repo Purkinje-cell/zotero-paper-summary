@@ -1,8 +1,7 @@
 import { config } from "../package.json";
-import { ColumnOptions, DialogHelper } from "zotero-plugin-toolkit";
 import hooks from "./hooks";
+import { createApi, type PluginApi } from "./modules/api";
 import { createZToolkit } from "./utils/ztoolkit";
-
 class Addon {
   public data: {
     alive: boolean;
@@ -12,19 +11,13 @@ class Addon {
     initialized?: boolean;
     ztoolkit: ZToolkit;
     locale?: {
-      current: any;
+      current: Localization;
     };
-    prefs?: {
-      window: Window;
-      columns: Array<ColumnOptions>;
-      rows: Array<{ [dataKey: string]: string }>;
-    };
-    dialog?: DialogHelper;
   };
   // Lifecycle hooks
   public hooks: typeof hooks;
   // APIs
-  public api: object;
+  public api: PluginApi;
 
   constructor() {
     this.data = {
@@ -35,7 +28,7 @@ class Addon {
       ztoolkit: createZToolkit(),
     };
     this.hooks = hooks;
-    this.api = {};
+    this.api = createApi();
   }
 }
 

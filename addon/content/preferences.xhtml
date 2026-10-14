@@ -1,28 +1,81 @@
 <linkset>
   <html:link rel="localization" href="__addonRef__-preferences.ftl" />
 </linkset>
-<groupbox
-  onload="Zotero.__addonInstance__.hooks.onPrefsEvent('load', { window })"
->
-  <label><html:h2 data-l10n-id="pref-title"></html:h2></label>
-  <checkbox
-    id="zotero-prefpane-__addonRef__-enable"
-    preference="enable"
-    data-l10n-id="pref-enable"
-  />
+<groupbox>
+  <label><html:h2 data-l10n-id="pref-llm-title"></html:h2></label>
   <hbox>
     <html:label
-      for="zotero-prefpane-__addonRef__-input"
-      data-l10n-id="pref-input"
+      for="zotero-prefpane-__addonRef__-llmBaseURL"
+      data-l10n-id="pref-llm-base-url"
     ></html:label>
     <html:input
       type="text"
-      id="zotero-prefpane-__addonRef__-input"
-      preference="input"
+      id="zotero-prefpane-__addonRef__-llmBaseURL"
+      preference="__prefsPrefix__.llmBaseURL"
     ></html:input>
   </hbox>
-  <hbox class="virtualized-table-container" flex="1" height="300px">
-    <html:div id="__addonRef__-table-container" />
+  <hbox>
+    <html:label
+      for="zotero-prefpane-__addonRef__-llmAPIKey"
+      data-l10n-id="pref-llm-api-key"
+    ></html:label>
+    <html:input
+      type="password"
+      id="zotero-prefpane-__addonRef__-llmAPIKey"
+      preference="__prefsPrefix__.llmAPIKey"
+    ></html:input>
+  </hbox>
+  <hbox>
+    <html:label
+      for="zotero-prefpane-__addonRef__-llmModel"
+      data-l10n-id="pref-llm-model"
+    ></html:label>
+    <html:input
+      type="text"
+      id="zotero-prefpane-__addonRef__-llmModel"
+      preference="__prefsPrefix__.llmModel"
+    ></html:input>
+  </hbox>
+  <hbox align="center" pack="end">
+    <button
+      id="zotero-prefpane-__addonRef__-llmTestBtn"
+      data-l10n-id="pref-test-btn"
+      oncommand="Zotero.__addonInstance__.api.testLLMConnection(this)"
+    ></button>
+  </hbox>
+  <hbox>
+    <html:label
+      id="zotero-prefpane-__addonRef__-llmTestResult"
+      class="ps-test-result"
+      style="color: inherit; font-size: 0.9em; flex: 1; white-space: pre-wrap"
+    ></html:label>
+  </hbox>
+  <hbox>
+    <html:label
+      for="zotero-prefpane-__addonRef__-summaryLanguage"
+      data-l10n-id="pref-summary-language"
+    ></html:label>
+    <menulist
+      id="zotero-prefpane-__addonRef__-summaryLanguage"
+      preference="__prefsPrefix__.summaryLanguage"
+    >
+      <menupopup>
+        <menuitem value="auto" data-l10n-id="pref-summary-language-auto" />
+        <menuitem value="en" data-l10n-id="pref-summary-language-en" />
+        <menuitem value="zh" data-l10n-id="pref-summary-language-zh" />
+      </menupopup>
+    </menulist>
+  </hbox>
+  <hbox>
+    <html:label
+      for="zotero-prefpane-__addonRef__-maxSectionChars"
+      data-l10n-id="pref-max-section-chars"
+    ></html:label>
+    <html:input
+      type="number"
+      id="zotero-prefpane-__addonRef__-maxSectionChars"
+      preference="__prefsPrefix__.maxSectionChars"
+    ></html:input>
   </hbox>
 </groupbox>
 <vbox>
